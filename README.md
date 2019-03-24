@@ -7,3 +7,7 @@ PS C:\Users\Newtein\vscode_reposi\youtubetutorial01> create-react-app react-proj
 PS C:\Users\Newtein\vscode_reposi\youtubetutorial01\project-youtube-tutorial01> npm install axios
 
 PS C:\Users\Newtein\vscode_reposi\youtubetutorial01\project-youtube-tutorial01> npm install bootstrap@4.2.1
+
+Chrome Extentions
+- React Developer Tools
+- Redux DevTools
