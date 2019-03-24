@@ -1,5 +1,8 @@
 package com.example.youtubetutorial01.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import com.example.youtubetutorial01.domain.ProjectTask;
@@ -8,6 +11,8 @@ import com.example.youtubetutorial01.service.ProjectTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +31,18 @@ public class ProjectTaskController {
     private ProjectTaskService projectTaskService;
 
     @PostMapping("")
-    public ResponseEntity<?> addPPToBoard(@Valid @RequestBody ProjectTask projectTask) {
+    public ResponseEntity<?> addPPToBoard(@Valid @RequestBody ProjectTask projectTask, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()){
+            Map<String, String> errorMap = new HashMap<>();
+
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                errorMap.put(error.getField(), error.getDefaultMessage());
+            }
+
+            return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
+        }
+
         ProjectTask newPT = projectTaskService.saveOrUpdateProjectTask(projectTask);
 
         return new ResponseEntity<ProjectTask>(newPT, HttpStatus.CREATED);
