@@ -11,3 +11,5 @@ PS C:\Users\Newtein\vscode_reposi\youtubetutorial01\project-youtube-tutorial01> 
 Chrome Extentions
 - React Developer Tools
 - Redux DevTools
+
+React Developer Tools(F12 tab) -> state Check !!
